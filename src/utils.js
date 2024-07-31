@@ -1,4 +1,4 @@
-export const SERVER_BASE_URL = "https://"
+export const SERVER_BASE_URL = "https://assignment-backend.vercel.app"
 
 export const useLocalStorage = ({ key, value }) => {
     const storedValue = localStorage.getItem(key);

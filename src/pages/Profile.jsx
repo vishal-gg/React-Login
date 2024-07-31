@@ -1,7 +1,11 @@
-import { InputField } from "../components/InputField";
 import Wrapper from "../components/Wrapper";
+import { useDispatch } from "react-redux"
+import { logout } from "../store/features/userSlice"
 
 const Profile = () => {
+
+  const dispatch = useDispatch()
+
   return (
     <Wrapper>
         <div className="flex items-center rounded-3xl overflow-clip bg-white lg:h-[600px] mt-5">
@@ -14,6 +18,7 @@ const Profile = () => {
             </div>
             <div>
               <button
+                onClick={() => dispatch(logout())}
                 type="button"
                 className="text-sm bg-[#005aa6] hover:opacity-90 active:opacity-100 transition-opacity text-white rounded-3xl py-2.5 px-8"
               >

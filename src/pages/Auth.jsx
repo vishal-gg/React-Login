@@ -13,7 +13,7 @@ import { Loader_Ring_2 } from "../components/loader/Loader"
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true)
   const [isPassVisible, setPassIsVisible] = useState(false)
-  const { loading } = useSelector((store) => store.currentUser)
+  const { loading, error: serverError } = useSelector((store) => store.currentUser)
   const dispatch = useDispatch()
 
 
@@ -21,6 +21,8 @@ const Auth = () => {
     handleSubmit,
     register: registerForm,
     unregister,
+    setError,
+    clearErrors,
     formState: { errors },
   } = useForm()
 
@@ -36,8 +38,12 @@ const Auth = () => {
 
   useEffect(() => {
     unregister("email")
+    clearErrors("root")
   }, [isLogin])
 
+  useEffect(() => {
+    if (serverError) setError("root", {message: serverError})
+  }, [serverError])
 
   return (
     <Wrapper>
@@ -162,7 +168,7 @@ const Auth = () => {
               )}
             </motion.div>
           </div>
-          <div className="grid justify-items-center gap-1.5">
+          <div className="grid justify-items-center gap-4">
             <motion.button
               layout
               type="submit"
@@ -178,6 +184,7 @@ const Auth = () => {
               )}
             </motion.button>
             {loading && <small className="font-medium text-gray-500">Please wait...</small>}
+            {errors?.root && <small className="font-medium text-red-500">{errors?.root?.message}</small>}
           </div>
         </form>
         <div className="bg-gray-200 h-full flex-grow max-lg:hidden">
