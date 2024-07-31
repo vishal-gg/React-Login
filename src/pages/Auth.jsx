@@ -173,8 +173,8 @@ const Auth = () => {
               layout
               type="submit"
               disabled={loading}
-              className="text-sm bg-[#005aa6] hover:opacity-90 active:opacity-100 transition-opacity text-white rounded-3xl px-8 !mt-5 disabled:opacity-70"
-              style={{ width: loading ? "fit-content" : "100%", paddingBlock: loading ? "5px" : "10px"}}
+              className="text-sm bg-[#005aa6] hover:opacity-90 active:opacity-100 transition-opacity text-white px-8 !mt-5 disabled:opacity-70"
+              style={{ width: loading ? "fit-content" : "100%", paddingBlock: loading ? "5px" : "10px", borderRadius: "25px"}}
             >
               <span style={{display: loading ? "none" : "inline"}}>{isLogin ? "SIGN IN" : "Register"}</span>
               {loading && (
@@ -183,8 +183,8 @@ const Auth = () => {
                 </motion.span>
               )}
             </motion.button>
-            {loading && <small className="font-medium text-gray-500">Please wait...</small>}
-            {errors?.root && <small className="font-medium text-red-500">{errors?.root?.message}</small>}
+            {loading && <motion.small layout className="font-medium text-gray-500">Please wait...</motion.small>}
+            {errors?.root && <motion.small layout className="font-medium text-red-500">{errors?.root?.message}</motion.small>}
           </div>
         </form>
         <div className="bg-gray-200 h-full flex-grow max-lg:hidden">
