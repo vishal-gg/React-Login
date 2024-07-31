@@ -27,7 +27,7 @@ export const register = createAsyncThunk(
   async ({ formData }) => {
     console.log(formData)
     try {
-      const { data } = await axios.post(`${SERVER_BASE_URL}/register`, formData);
+      const { data } = await axios.post(`${SERVER_BASE_URL}/api/register`, formData);
       return data
     } catch (err) {
       handleErrorState(err);
@@ -40,7 +40,7 @@ export const signIn = createAsyncThunk(
   async ({ credentials }) => {
     console.log(credentials)
     try {
-      const { data } = await axios.post(`${SERVER_BASE_URL}/login`, credentials);
+      const { data } = await axios.post(`${SERVER_BASE_URL}/api/login`, credentials);
       return data;
     } catch (err) {
       handleErrorState(err);
@@ -51,7 +51,7 @@ export const signIn = createAsyncThunk(
 export const logout = createAsyncThunk('auth/logout', async (route) => {
   const token = JSON.parse(localStorage.getItem('userInfo') || null)?.token;
   try {
-    await axios.get(`${SERVER_BASE_URL}${route}`, {
+    await axios.get(`${SERVER_BASE_URL}/api/logout`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
