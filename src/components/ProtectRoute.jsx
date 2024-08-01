@@ -7,7 +7,7 @@ const ProtectRoute = ({children, isProtected  = true}) => {
     if (isProtected) {
         return isAuth ? children : <Navigate to="/auth" replace />
     } else {
-        return isAuth ? <Navigate to="/" replace /> : children
+        return isAuth ? <Navigate to="/profile" replace /> : children
     }
 
     // The isProtected variable redirects authenticated users from the login page and 

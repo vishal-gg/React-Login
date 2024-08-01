@@ -11,7 +11,7 @@ const initialState = {
 const handleErrorState = (error) => {
   if (error.response) {
     throw new Error(
-      error.response.data.erroror ||
+      error.response.data.error ||
         error.response.data.message ||
         error.message
     )
@@ -51,7 +51,7 @@ export const signIn = createAsyncThunk(
 export const logout = createAsyncThunk('auth/logout', async (route) => {
   const token = JSON.parse(localStorage.getItem('userInfo') || null)?.token;
   try {
-    await axios.get(`${SERVER_BASE_URL}/api/logout`, {
+    await axios.post(`${SERVER_BASE_URL}/api/logout`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
